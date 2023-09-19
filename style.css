@@ -1,0 +1,28 @@
+body {
+	font-family: "Cutive Mono", monospace;
+	background-color: #000;
+	color: #fff;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+}
+
+.clock {
+	font-size: 10vw;
+	border-radius: 10px;
+	padding: 2%; /* Reduce padding for vertical spacing */
+}
+
+#date {
+	font-size: 5vw;
+	color: #696969;
+}
+
+#time {
+	font-size: 15vw;
+	color: #969696;
+}
