@@ -13,8 +13,10 @@ body {
 }
 
 .clock {
+
 	font-size: 10vw;
 	color: #696969;
+	animation: animating 5s ease-in-out infinite;
 }
 
 #time {
@@ -24,4 +26,17 @@ body {
 #date {
 	font-size: 6vw;
 	margin-top: 15%;
+}
+
+@keyframes animating {
+	0%{
+		transform: scale(1);
+	}
+	50%{
+		transform: scale(0.95);
+		color: #000;
+	}
+	100%{
+		transform: scale(1);
+	}
 }
