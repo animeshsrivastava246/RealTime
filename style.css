@@ -10,33 +10,21 @@ body {
 	height: 100vh;
 	margin: 0;
 	padding: 0;
-}
-
-.clock {
-
-	font-size: 10vw;
 	color: #696969;
 	animation: animating 5s ease-in-out infinite;
 }
 
 #time {
-	font-size: 19vw;
+	font-size: 16vw;
 }
 
 #date {
-	font-size: 6vw;
-	margin-top: 15%;
+	font-size: 5vw;
 }
 
 @keyframes animating {
-	0%{
-		transform: scale(1);
-	}
-	50%{
-		transform: scale(0.95);
+	50% {
+		transform: scale(0.97);
 		color: #000;
-	}
-	100%{
-		transform: scale(1);
 	}
 }
