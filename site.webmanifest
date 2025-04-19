@@ -1,6 +1,7 @@
 {
   "name": "Real Time Clock - Live Date and Time Display | RealClockLive",
   "short_name": "RealClockLive",
+  "description": "A futuristic real-time clock displaying the current date and time with precision. Click to enter full-screen mode for a distraction-free experience.",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
