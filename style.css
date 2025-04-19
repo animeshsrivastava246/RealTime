@@ -56,7 +56,7 @@ body::before {
 }
 
 #time {
-  font-size: 14vw;
+  font-size: 12vw;  /* Reduced from 14vw */
   text-shadow: var(--text-shadow);
   letter-spacing: 0.05em;
   font-weight: 400;
@@ -67,15 +67,19 @@ body::before {
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(var(--glow-effect));
   white-space: nowrap;
+  line-height: 0.9;  /* Added line height adjustment */
+  margin-right: -0.05em;  /* Compensate for letter spacing */
 }
 
 #date {
-  font-size: 5vw;
+  font-size: 4.5vw;  /* Reduced from 5vw */
   opacity: 0.8;
   letter-spacing: 0.1em;
   text-shadow: var(--text-shadow);
   position: relative;
   color: #888;
+  white-space: nowrap;  /* Added to prevent date wrapping */
+  line-height: 1.2;
 }
 
 main {
@@ -88,7 +92,9 @@ main {
   backdrop-filter: blur(5px);
   animation: float 10s ease-in-out infinite;
   width: 90%;
-  max-width: 800px;
+  max-width: 1000px;  /* Increased from 800px */
+  min-width: 300px;  /* Added minimum width */
+  overflow: hidden;  /* Added as safety measure */
 }
 
 @keyframes pulse {
