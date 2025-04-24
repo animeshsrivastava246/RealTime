@@ -23,7 +23,22 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
-  
+
+  // Hide cursor when idle
+  let idleTimeout;
+  const idleTime = 3000; // 3 seconds
+
+  function resetIdleTimer() {
+    clearTimeout(idleTimeout);
+    document.body.style.cursor = 'default';
+    idleTimeout = setTimeout(() => {
+      document.body.style.cursor = 'none';
+    }, idleTime);
+  }
+
+  document.addEventListener('mousemove', resetIdleTimer);
+  resetIdleTimer();
+
   // Update time with futuristic formatting
   function updateTime() {
     const now = new Date();
