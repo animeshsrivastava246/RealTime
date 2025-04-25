@@ -18,7 +18,7 @@ body {
 main {
   width: 100%;
   text-align: center;
-  animation: scale 5s ease-in-out infinite;
+  animation: scale 10s ease-in-out infinite;
 }
 
 #time {
@@ -37,7 +37,7 @@ main {
     transform: scale(1);
   }
   50% {
-    transform: scale(0.95);
+    transform: scale(0.75);
   }
 }
 
