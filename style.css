@@ -37,7 +37,7 @@ main {
     transform: scale(1);
   }
   50% {
-    transform: scale(0.75);
+    transform: scale(0.7);
   }
 }
 
