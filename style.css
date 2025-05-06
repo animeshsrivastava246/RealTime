@@ -29,7 +29,7 @@ main {
 #date {
   white-space: nowrap;
   font-size: min(6vw, 4rem);
-  opacity: 0.25;
+  opacity: 0.75;
 }
 
 @keyframes scale {
