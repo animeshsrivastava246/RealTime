@@ -18,7 +18,7 @@ body {
 main {
   width: 100%;
   text-align: center;
-  animation: scale 10s ease-in-out infinite;
+  animation: scale 8s ease-in-out infinite;
 }
 
 #time {
