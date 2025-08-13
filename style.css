@@ -58,7 +58,7 @@ ul[role='list'], ol[role='list'] {
 body {
   font-family: "Cutive Mono", monospace;
   background-color: #000;
-  color: rgba(255, 255, 255, 0.27);
+  color: rgba(255, 255, 255, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
