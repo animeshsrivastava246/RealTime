@@ -5,10 +5,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/serviceWorker.js')
-      .then(() => console.log('Service Worker registered'))
+      .then(() => console.info('Service Worker registered'))
       .catch(err => console.warn('Service Worker registration failed:', err));
   }
-
 
   // Inject clock container if missing (failsafe)
   if (!document.querySelector('main')) {
@@ -23,9 +22,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
       if ('wakeLock' in navigator) {
         wakeLock = await navigator.wakeLock.request('screen');
-        console.log('Wake Lock activated');
+        console.info('Wake Lock activated');
         wakeLock.addEventListener('release', () => {
-          console.log('Wake Lock released');
+          console.info('Wake Lock released');
         });
       }
     } catch (err) {
@@ -34,14 +33,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   await requestWakeLock();
 
-  // Re-acquire wake lock if page becomes visible again
   document.addEventListener('visibilitychange', async () => {
     if (document.visibilityState === 'visible') {
       await requestWakeLock();
     }
   });
 
-  // Brightness dimming after 10 mins idle
+  // Brightness dimming after idle
   const idleThreshold = 5 * 60 * 1000; // 5 minutes
   let idleTimer;
   const dimClass = 'dim-screen';
@@ -49,11 +47,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   function resetIdleTimer() {
     clearTimeout(idleTimer);
     body.classList.remove(dimClass);
-    document.body.style.cursor = 'default';
+    body.style.cursor = 'default';
 
     idleTimer = setTimeout(() => {
       body.classList.add(dimClass);
-      document.body.style.cursor = 'none';
+      body.style.cursor = 'none';
     }, idleThreshold);
   }
 
@@ -63,7 +61,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   resetIdleTimer();
 
-  // 🕒 Real-Time Clock Update
+  // Real-Time Clock Update
   function updateTime() {
     const now = new Date();
     const h = String(now.getHours()).padStart(2, '0');
@@ -82,40 +80,32 @@ document.addEventListener('DOMContentLoaded', async () => {
     dateElement.setAttribute('aria-label', `Current date: ${dateString}`);
     dateElement.setAttribute('datetime', now.toISOString().split('T')[0]);
 
-
     requestAnimationFrame(updateTime);
   }
   updateTime();
 
   // Fullscreen toggle
-  function toggleFullscreen() {
+  async function toggleFullscreen() {
     const el = document.documentElement;
 
-    if (!document.fullscreenElement && el.requestFullscreen) {
-      el.requestFullscreen().catch(err => {
-        console.error('Fullscreen failed:', err);
-      });
-    } else if (document.exitFullscreen) {
-      document.exitFullscreen();
+    try {
+      if (!document.fullscreenElement && el.requestFullscreen) {
+        await el.requestFullscreen();
+      } else if (document.exitFullscreen) {
+        await document.exitFullscreen();
+      }
+    } catch (err) {
+      console.error('Fullscreen toggle failed:', err);
+      // iOS Safari fallback alert on request failure
+      if (window.navigator.userAgent.includes('iPhone') || window.navigator.userAgent.includes('iPad')) {
+        alert('Please use "Add to Home Screen" for fullscreen mode on iOS.');
+      }
     }
   }
 
-  // Handle click for fullscreen (including iOS fix)
-  body.addEventListener('click', () => {
-    const el = document.documentElement;
+  // Use toggleFullscreen for click and keyboard shortcuts
+  body.addEventListener('click', toggleFullscreen);
 
-    if (!document.fullscreenElement && el.requestFullscreen) {
-      el.requestFullscreen().catch(err => {
-        console.warn('Manual fullscreen failed:', err);
-        // iOS Safari fullscreen fallback
-        if (window.navigator.userAgent.includes('iPhone') || window.navigator.userAgent.includes('iPad')) {
-          alert('Please use "Add to Home Screen" for fullscreen mode on iOS.');
-        }
-      });
-    }
-  });
-
-  // Fullscreen shortcut: F or Spacebar
   document.addEventListener('keydown', (e) => {
     if (['f', ' '].includes(e.key.toLowerCase())) {
       e.preventDefault();
