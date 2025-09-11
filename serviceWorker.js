@@ -4,7 +4,8 @@ const ASSETS_TO_CACHE = [
   '/index.html',
   '/style.css',
   '/script.js',
-  '/favicon.ico'
+  '/favicon.ico',
+  '/Zain-Regular.woff2'
 ];
 
 // Install event - cache all necessary assets

@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="RealClockLive" />
@@ -56,15 +56,12 @@
     content="A futuristic real-time clock displaying the current date and time with precision. Click to enter full-screen mode for a distraction-free experience." />
   <meta property="twitter:image" content="https://realclocklive.vercel.app/og-image.jpg" />
 
-  <!-- Fonts and Icons -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Icons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="apple-touch-startup-image" href="/apple-touch-icon.png" media="(device-width: 375px)">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="manifest" href="/site.webmanifest" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" as="style">
   <link rel="stylesheet" href="style.css" />
 
   <!-- Structured Data -->
@@ -87,14 +84,15 @@
     </script>
 </head>
 
-<body class="clock" role="application">
+<body class="clock">
   <header role="banner">
     <h1 class="visually-hidden">
       Real Time Clock - Live Date and Time Display | RealClockLive
     </h1>
   </header>
   <main role="main" aria-label="Clock">
-    <time id="time" title="Current time" datetime="" aria-live="assertive" aria-label="Current time" role="timer"></time>
+    <time id="time" title="Current time" datetime="" aria-live="assertive" aria-label="Current time"
+      role="timer"></time>
     <time id="date" title="Current date" datetime="" aria-live="polite" aria-label="Current date" role="timer"></time>
   </main>
   <footer role="contentinfo">
