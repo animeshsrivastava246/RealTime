@@ -79,7 +79,7 @@ body {
 
 /* Dimming effect after 5 minutes idle */
 body.dim-screen {
-  filter: brightness(0.1);
+  filter: brightness(0.75);
   transition: filter 1s ease-in-out;
 }
 
