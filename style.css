@@ -1,5 +1,7 @@
 /* === Modern CSS Reset === */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -22,12 +24,19 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
-img, picture, video, canvas, svg {
+img,
+picture,
+video,
+canvas,
+svg {
   display: block;
   max-width: 100%;
 }
 
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
   font: inherit;
 }
 
@@ -36,7 +45,8 @@ a {
   color: inherit;
 }
 
-ul[role='list'], ol[role='list'] {
+ul[role='list'],
+ol[role='list'] {
   list-style: none;
 }
 
@@ -45,7 +55,9 @@ ul[role='list'], ol[role='list'] {
     scroll-behavior: auto;
   }
 
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -65,16 +77,26 @@ body {
   overflow: hidden;
 }
 
+/* Dimming effect after 5 minutes idle */
+body.dim-screen {
+  filter: brightness(0.1);
+  transition: filter 1s ease-in-out;
+}
+
 main {
   width: 100%;
   text-align: center;
-  animation: scale 7s ease-in-out infinite;
+  animation: scale 10s ease-in-out infinite;
+}
+
+#time,
+#date {
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
 #time {
   white-space: nowrap;
   font-size: clamp(4rem, 20vw, 16rem);
-  line-height: 1.2;
 }
 
 #date {
@@ -84,12 +106,15 @@ main {
 }
 
 @keyframes scale {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     opacity: 1;
   }
+
   50% {
-    transform: scale(0.8);
+    transform: scale(0.75);
     opacity: 0;
   }
 }

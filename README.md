@@ -1,10 +1,10 @@
 # RealTime
 
-A simple web application that displays the current date and time in real-time.
+A simple web application that displays the current date and time in real-time with a sleek and minimalistic design.
 
 ## 🚀 Live Demo
 
-Experience the live application here: [RealTime Clock](https://realclocklive.vercel.app)
+Experience the live application here: [RealTime Clock](https://realclocklive.vercel.app)  
 Alternate Domain: [Real Time Clock](https://animeshsrivastava246.github.io/RealTime/)
 
 ## 📁 Project Structure
@@ -17,6 +17,7 @@ The repository contains the following files:
 - `robots.txt` – Provides directives to web crawlers.
 - `sitemap.xml` – Helps search engines crawl and index the site efficiently.
 - `site.webmanifest` – Provides metadata for the web application, enabling features like "Add to Home Screen."
+- `serviceWorker.js` – Handles Progressive Web App functionality.
 - Various image files for icons and social media previews:
   - `favicon.ico`
   - `favicon-16x16.png`
@@ -44,10 +45,15 @@ The repository contains the following files:
 - Responsive design that adapts to various screen sizes.
 - Lightweight and fast-loading.
 - No external libraries or frameworks used.
+- Progressive Web App (PWA) enabled.
 
 ## 📸 Screenshots
 
-![RealTime Clock](https://github.com/animeshsrivastava246/RealTime/blob/main/og-image.jpg)
+![RealTime Clock](https://raw.githubusercontent.com/animeshsrivastava246/RealTime/main/screenshot.jpg)
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to submit issues and pull requests.
 
 ## 📄 License
 
