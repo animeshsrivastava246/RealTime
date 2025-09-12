@@ -7,9 +7,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   if ('serviceWorker' in navigator) {
     try {
       await navigator.serviceWorker.register('./serviceWorker.js');
-      console.info('Service Worker registered');
+      // console.info('Service Worker registered');
     } catch (err) {
-      console.warn('Service Worker registration failed:', err);
+      // console.warn('Service Worker registration failed:', err);
     }
   }
 
@@ -18,11 +18,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
       wakeLock = await navigator.wakeLock?.request('screen');
       wakeLock?.addEventListener('release', () => {
-        console.info('Wake Lock released');
+        // console.info('Wake Lock released');
       });
-      console.info('Wake Lock activated');
+      // console.info('Wake Lock activated');
     } catch (err) {
-      console.error('Wake Lock not supported or denied:', err);
+      // console.error('Wake Lock not supported or denied:', err);
     }
   }
 
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (!document.fullscreenElement) await el.requestFullscreen?.();
       else await document.exitFullscreen?.();
     } catch (err) {
-      console.error('Fullscreen toggle failed:', err);
+      // console.error('Fullscreen toggle failed:', err);
       if (/iPhone|iPad/.test(navigator.userAgent)) alert('Please use "Add to Home Screen" for fullscreen mode on iOS.');
     }
   }
