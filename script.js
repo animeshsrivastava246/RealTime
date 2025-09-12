@@ -1,113 +1,123 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  const timeElement = document.getElementById('time');
-  const dateElement = document.getElementById('date');
-  const body = document.body;
+  const timeElement = document.getElementById('time'), dateElement = document.getElementById('date'), body = document.body, IDLE_TIMEOUT = 5 * 60 * 1000/* 5m */, CURSOR_HIDE_TIMEOUT = 3000 /* 3s */, dimClass = 'dim-screen';
 
+  let idleTimer = null, cursorTimer = null, wakeLock = null;
+
+  // --- Service Worker Registration ---
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/serviceWorker.js')
-      .then(() => console.info('Service Worker registered'))
-      .catch(err => console.warn('Service Worker registration failed:', err));
+    try {
+      await navigator.serviceWorker.register('./serviceWorker.js');
+      console.info('Service Worker registered');
+    } catch (err) {
+      console.warn('Service Worker registration failed:', err);
+    }
   }
 
-  // Inject clock container if missing (failsafe)
-  if (!document.querySelector('main')) {
-    const main = document.createElement('main');
-    main.append(timeElement, dateElement);
-    body.appendChild(main);
-  }
-
-  // Always Awake (Screen Wake Lock API)
-  let wakeLock = null;
+  // --- Wake Lock Request ---
   async function requestWakeLock() {
     try {
-      if ('wakeLock' in navigator) {
-        wakeLock = await navigator.wakeLock.request('screen');
-        console.info('Wake Lock activated');
-        wakeLock.addEventListener('release', () => {
-          console.info('Wake Lock released');
-        });
-      }
+      wakeLock = await navigator.wakeLock?.request('screen');
+      wakeLock?.addEventListener('release', () => {
+        console.info('Wake Lock released');
+      });
+      console.info('Wake Lock activated');
     } catch (err) {
       console.error('Wake Lock not supported or denied:', err);
     }
   }
+
   await requestWakeLock();
 
   document.addEventListener('visibilitychange', async () => {
-    if (document.visibilityState === 'visible') {
-      await requestWakeLock();
-    }
+    if (document.visibilityState === 'visible') await requestWakeLock();
   });
 
-  // Brightness dimming after idle
-  const idleThreshold = 5 * 60 * 1000; // 5 minutes
-  let idleTimer;
-  const dimClass = 'dim-screen';
-
-  function resetIdleTimer() {
+  // --- Idle & Cursor Management ---
+  function resetIdleState() {
     clearTimeout(idleTimer);
+    clearTimeout(cursorTimer);
+
     body.classList.remove(dimClass);
     body.style.cursor = 'default';
 
+    // Cursor hide
+    cursorTimer = setTimeout(() => {
+      body.style.cursor = 'none';
+    }, CURSOR_HIDE_TIMEOUT);
+
+    // Idle screen dimming timer
     idleTimer = setTimeout(() => {
       body.classList.add(dimClass);
-      body.style.cursor = 'none';
-    }, idleThreshold);
+    }, IDLE_TIMEOUT);
   }
 
   ['mousemove', 'keydown', 'touchstart'].forEach(evt =>
-    document.addEventListener(evt, resetIdleTimer)
+    document.addEventListener(evt, resetIdleState, { passive: true })
   );
 
-  resetIdleTimer();
+  resetIdleState();
 
-  // Real-Time Clock Update
+  // --- Time & Date Updater ---
   function updateTime() {
-    const now = new Date();
-    const h = String(now.getHours()).padStart(2, '0');
-    const m = String(now.getMinutes()).padStart(2, '0');
-    const s = String(now.getSeconds()).padStart(2, '0');
+    const now = new Date(), dateString = now.toLocaleDateString(undefined, {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    }).toUpperCase();
 
-    timeElement.textContent = `${h}:${m}:${s}`;
+    const [h, m, s] = [
+      now.getHours(),
+      now.getMinutes(),
+      now.getSeconds()
+    ].map(v => String(v).padStart(2, '0'));
 
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    const dateString = now.toLocaleDateString(undefined, options).toUpperCase();
-    dateElement.textContent = dateString;
+    const iso = now.toISOString()
 
-    // ARIA updates
-    timeElement.setAttribute('aria-label', `Current time: ${h} hours, ${m} minutes, ${s} seconds`);
-    timeElement.setAttribute('datetime', now.toISOString());
-    dateElement.setAttribute('aria-label', `Current date: ${dateString}`);
-    dateElement.setAttribute('datetime', now.toISOString().split('T')[0]);
+    if (timeElement) {
+      timeElement.textContent = `${h}:${m}:${s}`;
+      timeElement.setAttribute('aria-label', `Current time: ${h} hours, ${m} minutes, ${s} seconds`);
+      timeElement.setAttribute('datetime', iso);
+    }
 
-    requestAnimationFrame(updateTime);
+    if (dateElement) {
+      dateElement.textContent = dateString;
+      dateElement.setAttribute('aria-label', `Current date: ${dateString}`);
+      dateElement.setAttribute('datetime', iso.split('T')[0]);
+    }
   }
-  updateTime();
 
-  // Fullscreen toggle
+  function startClock() {
+    updateTime(); // Initial update
+
+    const now = new Date(), delay = 1000 - (now % 1000); // Align to next second
+
+    setTimeout(() => {
+      updateTime(); // Realign
+      setInterval(updateTime, 1000); // Tick every second
+    }, delay);
+  }
+
+  startClock();
+
+  // --- Fullscreen Toggle ---
   async function toggleFullscreen() {
     const el = document.documentElement;
 
     try {
-      if (!document.fullscreenElement && el.requestFullscreen) {
-        await el.requestFullscreen();
-      } else if (document.exitFullscreen) {
-        await document.exitFullscreen();
-      }
+      if (!document.fullscreenElement) await el.requestFullscreen?.();
+      else await document.exitFullscreen?.();
     } catch (err) {
       console.error('Fullscreen toggle failed:', err);
-      // iOS Safari fallback alert on request failure
-      if (window.navigator.userAgent.includes('iPhone') || window.navigator.userAgent.includes('iPad')) {
-        alert('Please use "Add to Home Screen" for fullscreen mode on iOS.');
-      }
+      if (/iPhone|iPad/.test(navigator.userAgent)) alert('Please use "Add to Home Screen" for fullscreen mode on iOS.');
     }
   }
 
-  // Use toggleFullscreen for click and keyboard shortcuts
   body.addEventListener('click', toggleFullscreen);
 
   document.addEventListener('keydown', (e) => {
-    if (['f', ' '].includes(e.key.toLowerCase())) {
+    const key = e.key.toLowerCase();
+    if (key === 'f' || key === ' ') {
       e.preventDefault();
       toggleFullscreen();
     }

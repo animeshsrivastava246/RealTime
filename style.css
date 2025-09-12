@@ -60,7 +60,7 @@ body {
 
 /* Dimming after idle */
 body.dim-screen {
-  filter: brightness(0.75);
+  filter: brightness(0.35);
   transition: filter 1s ease-in-out;
   will-change: filter;
 }
@@ -96,7 +96,7 @@ main {
 }
 
 /* Animations */
-@keyframes scale {
+/* @keyframes scale {
 
   0%,
   100% {
@@ -108,7 +108,7 @@ main {
     transform: scale(0.75);
     opacity: 0;
   }
-}
+} */
 
 /* Reduced Motion Preference */
 @media (prefers-reduced-motion: reduce) {
