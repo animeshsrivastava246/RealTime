@@ -96,7 +96,7 @@ main {
 }
 
 /* Animations */
-/* @keyframes scale {
+@keyframes scale {
 
   0%,
   100% {
@@ -108,7 +108,7 @@ main {
     transform: scale(0.75);
     opacity: 0;
   }
-} */
+}
 
 /* Reduced Motion Preference */
 @media (prefers-reduced-motion: reduce) {
