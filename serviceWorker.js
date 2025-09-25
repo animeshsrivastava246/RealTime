@@ -40,11 +40,8 @@ self.addEventListener('fetch', event => {
         return cachedResponse;
       }
       return fetch(event.request).then(networkResponse => {
-        // Optionally cache new resources here (cache-first or network-first strategies)
         return networkResponse;
       }).catch(() => {
-        // Optional: Provide fallback response (like offline page or image) here
-        // return caches.match('/offline.html');
       });
     })
   );

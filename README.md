@@ -25,7 +25,7 @@ The repository contains the following files:
   - `android-chrome-192x192.png`
   - `android-chrome-512x512.png`
   - `apple-touch-icon.png`
-  - `og-image.jpg`
+  - `og-image.png`
 - `.github/workflows` – Contains GitHub Actions workflows for continuous integration and deployment.
 - `LICENSE` – Indicates the project's licensing terms.
 
