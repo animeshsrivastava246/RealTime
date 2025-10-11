@@ -34,7 +34,7 @@ The repository contains the following files:
 ### Frontend
 - HTML5
 - CSS3
-- JavaScript ([GitHub](https://github.com))
+- JavaScript
 
 ### Deployment
 - Vercel
