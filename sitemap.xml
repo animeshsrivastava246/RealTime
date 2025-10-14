@@ -4,17 +4,17 @@
   <!-- Vercel version -->
   <url>
     <loc>https://realclocklive.vercel.app/</loc>
-    <lastmod>2025-10-11</lastmod>
+    <lastmod>2025-10-14</lastmod>
     <priority>1.0</priority>
-    <changefreq>never</changefreq>
+    <changefreq>monthly</changefreq>
   </url>
 
   <!-- GitHub Pages version -->
   <url>
     <loc>https://animeshsrivastava246.github.io/RealTime/</loc>
-    <lastmod>2025-10-11</lastmod>
+    <lastmod>2025-10-14</lastmod>
     <priority>1.0</priority>
-    <changefreq>never</changefreq>
+    <changefreq>monthly</changefreq>
   </url>
 
 </urlset>
