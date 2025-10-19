@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  const timeElement = document.getElementById('time'), dateElement = document.getElementById('date'), body = document.body, IDLE_TIMEOUT = 5 * 60 * 1000/* 5m */, CURSOR_HIDE_TIMEOUT = 3000 /* 3s */, dimClass = 'dim-screen';
+  const timeElement = document.getElementById('time'), dateElement = document.getElementById('date'), body = document.body, IDLE_TIMEOUT = 3 * 60 * 1000/* 3m */, CURSOR_HIDE_TIMEOUT = 3000 /* 3s */, dimClass = 'dim-screen';
 
   let idleTimer = null, cursorTimer = null, wakeLock = null;
 
