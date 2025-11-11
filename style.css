@@ -61,7 +61,7 @@ body {
 /* Dimming after idle */
 body.dim-screen {
   filter: brightness(0.4);
-  transition: filter 3s ease-in-out;
+  transition: filter 2.5s cubic-bezier(0.6, 0.05, 0.4, 0.95);
   will-change: filter;
 }
 
@@ -73,8 +73,10 @@ main {
   justify-content: center;
   min-height: 100vh;
   text-align: center;
-  animation: glow 6s ease-in-out infinite;
-  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  animation: glow 8s cubic-bezier(0.6, 0.05, 0.4, 0.95) infinite;
+  will-change: transform, opacity, filter;
 }
 
 #time {
@@ -102,16 +104,17 @@ main {
 
 /* Animations */
 @keyframes glow {
-
   0%,
   100% {
     transform: scale(1);
     opacity: 1;
+    filter: blur(0px);
   }
 
   50% {
     transform: scale(0.9);
     opacity: 0;
+    filter: blur(4px);
   }
 }
 
