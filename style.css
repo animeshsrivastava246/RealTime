@@ -41,7 +41,7 @@ body {
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 /* Accessibility */
@@ -102,6 +102,7 @@ main {
 
 /* Animations */
 @keyframes glow {
+
   0%,
   100% {
     transform: scale(1);
