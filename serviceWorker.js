@@ -1,4 +1,4 @@
-const CACHE_NAME = 'clock-v1';
+const CACHE_NAME = 'RealClockLive';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',

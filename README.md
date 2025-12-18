@@ -14,6 +14,7 @@ The repository contains the following files:
 - `index.html` – The main HTML file that structures the webpage.
 - `style.css` – The CSS file that styles the webpage.
 - `script.js` – The JavaScript file that handles the real-time clock functionality.
+- `_A_S_2510_.js` – Authon Signature.
 - `robots.txt` – Provides directives to web crawlers.
 - `sitemap.xml` – Helps search engines crawl and index the site efficiently.
 - `site.webmanifest` – Provides metadata for the web application, enabling features like "Add to Home Screen."
@@ -32,7 +33,7 @@ The repository contains the following files:
 
 ## 🛠️ Technologies Used
 
-### Frontend
+### Static Page
 - HTML5
 - CSS3
 - JavaScript
