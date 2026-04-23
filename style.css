@@ -34,7 +34,7 @@ body {
   align-items: center;
   overflow: hidden;
   min-height: 100vh;
-  line-height: 1;
+  line-height: 1.2;
   letter-spacing: 0;
   word-spacing: 0;
   text-rendering: optimizeSpeed;
