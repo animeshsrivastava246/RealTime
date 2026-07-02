@@ -1,7 +1,7 @@
 (function () {
   const _A_S_2510_ =
     "ANIMESH SRIVASTAVA - animeshsrivastava246246@gmail.com - " +
-    "https://portfolio-animesh-dev.vercel.app/ - [2026_January]";
+    "https://animeshsrivastava.vercel.app/ - [2026_July]";
 
   try {
     Object.defineProperty(window, "_A_S_2510_", {
