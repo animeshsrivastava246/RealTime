@@ -4,8 +4,7 @@ A simple web application that displays the current date and time in real-time wi
 
 ## 🚀 Live Demo
 
-Experience the live application here: [RealTime Clock](https://realclocklive.vercel.app)  
-Alternate Domain: [Real Time Clock](https://animeshsrivastava246.github.io/RealTime/)
+Experience the live application here: [RealTime Clock](https://realclocklive.vercel.app)
 
 ## 📁 Project Structure
 
@@ -28,7 +27,6 @@ The repository contains the following files:
   - `apple-touch-icon.png`
   - `og-image.png`
   - `screenshot.jpg`
-- `.github/workflows` – Contains GitHub Actions workflows for continuous integration and deployment.
 - `LICENSE` – Indicates the project's licensing terms.
 
 ## 🛠️ Technologies Used
