@@ -2,11 +2,11 @@
 
 A simple web application that displays the current date and time in real-time with a sleek and minimalistic design.
 
-## 🚀 Live Demo
+## Live Demo
 
 Experience the live application here: [RealTime Clock](https://realclocklive.vercel.app)
 
-## 📁 Project Structure
+## Project Structure
 
 The repository contains the following files:
 
@@ -39,7 +39,7 @@ The repository contains the following files:
 ### Deployment
 - Vercel
 
-## 🔧 Features
+## Features
 
 - Displays the current date and time in real-time.
 - Responsive design that adapts to various screen sizes.
