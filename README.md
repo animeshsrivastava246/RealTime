@@ -4,7 +4,7 @@ A simple web application that displays the current date and time in real-time wi
 
 ## Live Demo
 
-Experience the live application here: [RealTime Clock](https://realclocklive.vercel.app)
+Experience the live application here: [RealClockLive](https://realclocklive.vercel.app)
 
 ## Project Structure
 
